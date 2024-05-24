@@ -1,3 +1,14 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    margin-top: 10vh;
+}
+
 table {
     height: 60vh;
     width: 60vh;
@@ -25,4 +36,48 @@ table tr td:last-child{
 
 table tr:last-child td{
     border-bottom: 0px;
+}
+
+table tr td {
+    font-size: 200px;
+    text-align: center;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.move {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.move a {
+    font-size: 100px;
+}
+
+.score {
+    display: flex;
+    justify-content: space-around;
+    margin-inline: 30%;
+    margin-bottom: 10px;
+}
+
+.score .x {
+    font-size: 50px;
+    color: red;
+}
+
+.score .o {
+    font-size: 50px;
+    color: blue;
+}
+
+.score .display {
+    margin-top: 10px;
+    font-size: 30px;
 }
