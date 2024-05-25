@@ -39,6 +39,11 @@
     font-size: 40px;
 }
 
+.endScreen .container .tie {
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
 .endScreen .container .result {
     font-size: 50px;
     margin: 0;

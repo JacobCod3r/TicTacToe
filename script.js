@@ -8,6 +8,7 @@ var currentMove = 'x';
 var boardSize = [3, 3];
 var score = [0, 0]
 var inRow = 3;
+var movesDone = 0;
 var checkForWinnerContainer;
 
 if(localStorage.getItem("score") != null){
@@ -46,9 +47,15 @@ inputContainer.addEventListener("click", function(e){
             currentMove = 'x';
             checkForWinnerContainer = 'o';
         }
-        let isWinner = checkForWinner(e.target);
-        if(isWinner){
+        movesDone++;
+        console.log(movesDone);
+        if(checkForWinner(e.target)){
             onWin(checkForWinnerContainer);
+            movesDone = 0;
+        }
+        else if(movesDone >= boardSize[0] * boardSize[1]){
+            onWin("nobody");
+            movesDone = 0;
         }
     }
 })
@@ -155,14 +162,22 @@ function onWin(winner){
     result.classList.remove("red");
     result.classList.remove("blue");
     if(winner == 'x'){
+        document.querySelector(".winner").classList.remove("displayNone");
+        document.querySelector(".tie").classList.add("displayNone");
         result.classList.add("red");
         result.innerHTML = "X";
         score[0]++;
     }
     else if(winner == 'o'){
+        document.querySelector(".winner").classList.remove("displayNone");
+        document.querySelector(".tie").classList.add("displayNone");
         result.classList.add("blue");
         result.innerHTML = "O";
         score[1]++;
+    }
+    else {
+        document.querySelector(".winner").classList.add("displayNone");
+        document.querySelector(".tie").classList.remove("displayNone");
     }
     displayScore();
 }
