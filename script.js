@@ -1,9 +1,30 @@
 var inputContainer = document.querySelector("table");
 var currentMoveDisplay = document.querySelector(".display");
+var endScreen = document.querySelector(".endScreen");
+var result = document.querySelector(".result");
+var scoreDisplay1 = document.querySelector(".scoreDisplay1");
+var scoreDisplay2 = document.querySelector(".scoreDisplay2");
 var currentMove = 'x';
 var boardSize = [3, 3];
+var score = [0, 0]
 var inRow = 3;
 var checkForWinnerContainer;
+
+if(localStorage.getItem("score") != null){
+    score = [localStorage.getItem("score")[0], localStorage.getItem("score")[2]];
+    currentMove = localStorage.getItem("currentMove");
+    if(currentMove === 'o'){
+        currentMoveDisplay.innerHTML = "O";
+        currentMoveDisplay.classList.remove("red");
+        currentMoveDisplay.classList.add("blue");
+    }
+    else {
+        currentMoveDisplay.innerHTML = "X";
+        currentMoveDisplay.classList.remove("blue");
+        currentMoveDisplay.classList.add("red");
+    }
+    displayScore();
+}
 
 inputContainer.addEventListener("click", function(e){
     if(e.target.tagName === 'TD' && e.target.innerHTML === ''){
@@ -27,7 +48,7 @@ inputContainer.addEventListener("click", function(e){
         }
         let isWinner = checkForWinner(e.target);
         if(isWinner){
-            console.log("Wygrały " + checkForWinnerContainer);
+            onWin(checkForWinnerContainer);
         }
     }
 })
@@ -126,5 +147,80 @@ function checkForWinner(element){
     }
     if(count >= inRow){
         return true;
+    }
+}
+
+function onWin(winner){
+    endScreen.classList.remove("displayNone");
+    result.classList.remove("red");
+    result.classList.remove("blue");
+    if(winner == 'x'){
+        result.classList.add("red");
+        result.innerHTML = "X";
+        score[0]++;
+    }
+    else if(winner == 'o'){
+        result.classList.add("blue");
+        result.innerHTML = "O";
+        score[1]++;
+    }
+    displayScore();
+}
+
+function displayScore(){
+    scoreDisplay1.innerHTML = `${score[0]} - ${score[1]}`;
+    scoreDisplay2.innerHTML = scoreDisplay1.innerHTML;
+}
+
+function continueGame(){
+    document.querySelector("table").innerHTML = 
+    `
+        <table>
+            <tr class="v1">
+                <td class="v1h1"></td>
+                <td class="v1h2"></td>
+                <td class="v1h3"></td>
+            </tr>
+            <tr class="v2">
+                <td class="v2h1"></td>
+                <td class="v2h2"></td>
+                <td class="v2h3"></td>
+            </tr>
+            <tr class="v3">
+                <td class="v3h1"></td>
+                <td class="v3h2"></td>
+                <td class="v3h3"></td>
+            </tr>
+        </table>
+    `;
+    endScreen.classList.add("displayNone");
+}
+
+function save(){
+    let block = true;
+    if(block){
+        !block;
+        document.querySelector(".s").innerHTML = "Score saved!";
+        localStorage.setItem("score", score);
+        localStorage.setItem("currentMove", currentMove);
+        setTimeout(() => {
+            document.querySelector(".s").innerHTML = "Save score";
+        }, 2000);
+        !block
+    }
+}
+
+function reset(){
+    let block = true;
+    if(block){
+        !block;
+        document.querySelector(".r").innerHTML = "Score reseted!";
+        localStorage.clear();
+        score = [0, 0];
+        displayScore();
+        setTimeout(() => {
+            document.querySelector(".r").innerHTML = "Reset score";
+        }, 2000);
+        !block
     }
 }

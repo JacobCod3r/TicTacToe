@@ -2,11 +2,85 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
+.displayNone {
+    display: none;
+}
+
+.board {
     width: fit-content;
     height: fit-content;
     margin: auto;
+    margin-top: 8vh;
+}
+
+.endScreen {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+.endScreen .container {
+    background-color: rgb(110, 110, 110);
+    width: 400px;
+    height: 80vh;
+    margin-inline: auto;
     margin-top: 10vh;
+    border-radius: 40px;
+    text-align: center;
+    color: white;
+}
+
+.endScreen .container h1 {
+    padding-top: 50px;
+    margin-bottom: 40px;
+    font-size: 40px;
+}
+
+.endScreen .container .result {
+    font-size: 50px;
+    margin: 0;
+}
+
+.endScreen .container h3 {
+    font-size: 25px;
+    margin: 0 0 30px;
+}
+
+.endScreen .container .buttons button {
+    padding: 15px;
+    margin: 10px;
+    width: 80%;
+    background-color: green;
+    color: white;
+    font-size: 25px;
+    border: 0;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.endScreen .container .buttons button:hover {
+    transform: scale(104%);
+}
+
+.endScreen .container .buttons button:active {
+    transform: scale(96%);
+}
+
+.endScreen .container .buttons{
+    margin-top: 50px;
+}
+
+.endScreen .container .buttons .s{
+    background-color: rgb(88, 175, 204);
+}
+
+.endScreen .container .buttons .r{
+    background-color: rgb(180, 0, 0);
 }
 
 table {
@@ -57,7 +131,7 @@ table tr td {
 }
 
 .move a {
-    font-size: 100px;
+    font-size: 50px;
 }
 
 .score {
@@ -77,7 +151,7 @@ table tr td {
     color: blue;
 }
 
-.score .scoreDisplay {
+.score .scoreDisplay1, .score .scoreDisplay2 {
     margin-top: 10px;
     font-size: 30px;
 }
