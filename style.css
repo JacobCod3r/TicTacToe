@@ -77,7 +77,7 @@ table tr td {
     color: blue;
 }
 
-.score .display {
+.score .scoreDisplay {
     margin-top: 10px;
     font-size: 30px;
 }
