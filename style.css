@@ -2,6 +2,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    margin: 0;
+}
+
 .displayNone {
     display: none;
 }
@@ -24,8 +28,9 @@
 
 .endScreen .container {
     background-color: rgb(110, 110, 110);
-    width: 400px;
-    height: 80vh;
+    max-width: 100vw;
+    width: 500px;
+    height: fit-content;
     margin-inline: auto;
     margin-top: 10vh;
     border-radius: 40px;
@@ -86,19 +91,22 @@
 
 .endScreen .container .buttons .r{
     background-color: rgb(180, 0, 0);
+    margin-bottom: 30px;
 }
 
 table {
-    height: 60vh;
-    width: 60vh;
+    width: 100vw;
+    height: 100vw;
+    max-height: 60vh;
+    max-width: 60vh;
     background-color: lightgray;
     border-spacing: 0px;
 }
 
 table tr td {
     border: 5px black solid;
-    width: calc(100%/3);
-    height: calc(100%/3);
+    width: calc(100% / 3);
+    height: calc(100% / 3);
 }
 
 table tr:first-child td{
@@ -142,7 +150,7 @@ table tr td {
 .score {
     display: flex;
     justify-content: space-around;
-    margin-inline: 30%;
+    margin-inline: 20%;
     margin-bottom: 10px;
 }
 
@@ -159,4 +167,12 @@ table tr td {
 .score .scoreDisplay1, .score .scoreDisplay2 {
     margin-top: 10px;
     font-size: 30px;
+}
+
+@media screen and (max-width: 821px) {
+    table tr td {
+        width: calc(100% / 3) !important;
+        height: calc(100% / 3) !important;
+        font-size: 10vw;
+    }
 }
