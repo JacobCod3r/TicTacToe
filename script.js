@@ -232,10 +232,16 @@ function reset(){
         document.querySelector(".r").innerHTML = "Score reseted!";
         localStorage.clear();
         score = [0, 0];
+        currentMove = 'x';
+    
+        currentMoveDisplay.innerHTML = "X";
+        currentMoveDisplay.classList.remove("blue");
+        currentMoveDisplay.classList.add("red");
+        
         displayScore();
         setTimeout(() => {
             document.querySelector(".r").innerHTML = "Reset score";
         }, 2000);
-        !block
+        !block;
     }
 }
