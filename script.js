@@ -15,6 +15,7 @@ var checkForWinnerContainer;
 var SettingsStarting = 'x';
 var XRadioButton = document.querySelector(".xSettings");
 var ORadioButton = document.querySelector(".oSettings");
+XRadioButton.checked = true;
 
 if(localStorage.getItem("SettingStarting") != null){
     SettingsStarting = localStorage.getItem("SettingStarting");
