@@ -4,6 +4,7 @@ var endScreen = document.querySelector(".endScreen");
 var result = document.querySelector(".result");
 var scoreDisplay1 = document.querySelector(".scoreDisplay1");
 var scoreDisplay2 = document.querySelector(".scoreDisplay2");
+var settingsScreen = document.querySelector(".settingsScreen");
 var currentMove = 'x';
 var boardSize = [3, 3];
 var score = [0, 0]
@@ -11,20 +12,35 @@ var inRow = 3;
 var movesDone = 0;
 var checkForWinnerContainer;
 
+var SettingsStarting = 'x';
+var XRadioButton = document.querySelector(".xSettings");
+var ORadioButton = document.querySelector(".oSettings");
+
+if(localStorage.getItem("SettingStarting") != null){
+    SettingsStarting = localStorage.getItem("SettingStarting");
+    currentMove = SettingsStarting;
+    if(SettingsStarting === 'x'){
+        XRadioButton.checked = true;
+    } 
+    else if(SettingsStarting === 'o'){
+        ORadioButton.checked = true;
+    }
+}
 if(localStorage.getItem("score") != null){
     score = [localStorage.getItem("score")[0], localStorage.getItem("score")[2]];
     currentMove = localStorage.getItem("currentMove");
-    if(currentMove === 'o'){
-        currentMoveDisplay.innerHTML = "O";
-        currentMoveDisplay.classList.remove("red");
-        currentMoveDisplay.classList.add("blue");
-    }
-    else {
-        currentMoveDisplay.innerHTML = "X";
-        currentMoveDisplay.classList.remove("blue");
-        currentMoveDisplay.classList.add("red");
-    }
+    
     displayScore();
+}
+if(currentMove === 'o'){
+    currentMoveDisplay.innerHTML = "O";
+    currentMoveDisplay.classList.remove("red");
+    currentMoveDisplay.classList.add("blue");
+}
+else {
+    currentMoveDisplay.innerHTML = "X";
+    currentMoveDisplay.classList.remove("blue");
+    currentMoveDisplay.classList.add("red");
 }
 
 inputContainer.addEventListener("click", function(e){
@@ -48,7 +64,6 @@ inputContainer.addEventListener("click", function(e){
             checkForWinnerContainer = 'o';
         }
         movesDone++;
-        console.log(movesDone);
         if(checkForWinner(e.target)){
             onWin(checkForWinnerContainer);
             movesDone = 0;
@@ -230,18 +245,65 @@ function reset(){
     if(block){
         !block;
         document.querySelector(".r").innerHTML = "Score reseted!";
-        localStorage.clear();
         score = [0, 0];
-        currentMove = 'x';
+        if(localStorage.getItem("SettingStarting") != null){
+            currentMove = localStorage.getItem("SettingStarting");
+            if(currentMove === 'x'){
+                currentMoveDisplay.innerHTML = "X";
+            }
+            else if(currentMove === 'o'){
+                currentMoveDisplay.innerHTML = "O";
+            }
+            else {
+                console.log("NIGGER");
+            }
+        }
+        else {
+            currentMove = 'x';
+            currentMoveDisplay.innerHTML = "X";
+        }
     
-        currentMoveDisplay.innerHTML = "X";
         currentMoveDisplay.classList.remove("blue");
         currentMoveDisplay.classList.add("red");
         
+        localStorage.clear();
+        settingsSave();
+        
         displayScore();
+        
         setTimeout(() => {
             document.querySelector(".r").innerHTML = "Reset score";
         }, 2000);
         !block;
+    }
+}
+
+function settingsOpen(){
+    settingsScreen.classList.remove("displayNone");
+}
+
+function settingsClose(){
+    settingsScreen.classList.add("displayNone");
+}
+
+function settingsSave(){
+    if(XRadioButton.checked == true){
+        localStorage.setItem("SettingStarting", 'x');
+    }
+    else if(ORadioButton.checked == true) {
+        localStorage.setItem("SettingStarting", 'o');
+    }
+    if(localStorage.getItem("score") == null){
+        currentMove = localStorage.getItem("SettingStarting");
+        if(currentMove === 'o'){
+            currentMoveDisplay.innerHTML = "O";
+            currentMoveDisplay.classList.remove("red");
+            currentMoveDisplay.classList.add("blue");
+        }
+        else {
+            currentMoveDisplay.innerHTML = "X";
+            currentMoveDisplay.classList.remove("blue");
+            currentMoveDisplay.classList.add("red");
+        }
     }
 }

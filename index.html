@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TicTacToe</title>
-    <link rel="icon" type="image/svg+xml" href="TicTacToe.png" />
+    <link rel="icon" type="image/svg+xml" href="img/TicTacToe.png" />
     <link rel="stylesheet" href="style.css">
 </head>
     <body>
+
+        <div class="settings">
+            <button class="settingsButton" onclick="settingsOpen()"></button>
+        </div>
+
+        <div class="settingsScreen displayNone">
+            <div class="container">
+                <h1>Settings</h1>
+                <div class="startingFigure">
+                    <h2>First move</h2>
+                    <div>
+                        <input type="radio" name="XOrO" class="xSettings"><input type="radio" name="XOrO" class="oSettings">
+                    </div>
+                </div>
+                <a>Only appears in the first round (or after reset)</a>
+                <div class="buttons">
+                    <button onclick="settingsSave()">Save changes</button>
+                    <button class="e" onclick="settingsClose()">Exit</button>
+                </div>
+            </div>
+        </div>
 
         <div class="endScreen displayNone">
 
