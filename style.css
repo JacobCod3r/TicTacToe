@@ -90,7 +90,13 @@ body {
     width: 30px;
     appearance: none;
     margin-inline: 0;
-    transition: 0.3s;
+    transition: 0.2s;
+    cursor: pointer;
+    border: 0px solid white;
+}
+
+.colorsToDisplayX input:hover, .colorsToDisplayO input:hover {
+    border: 3px solid white;
 }
 
 .colorsToDisplayX input:checked, .colorsToDisplayO input:checked {
@@ -102,10 +108,12 @@ body {
 }
 
 .xColorChooseDisplay {
+    transition: 0.4s;
     color: var(--fastColorX);
 }
 
 .oColorChooseDisplay {
+    transition: 0.4s;
     color: var(--fastColorO);
 }
 
