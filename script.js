@@ -17,6 +17,7 @@ var colors = [
 var colorsToDisplayX = document.querySelector(".colorsToDisplayX");
 var colorsToDisplayO = document.querySelector(".colorsToDisplayO");
 var root = document.querySelector(':root');
+var firstSetBlock = false;
 
 if(localStorage.getItem("choosedColorX") != null){
     root.style.setProperty("--colorX", localStorage.getItem("choosedColorX"));
@@ -79,6 +80,7 @@ else {
 
 inputContainer.addEventListener("click", function(e){
     if(e.target.tagName === 'TD' && e.target.innerHTML === ''){
+        firstSetBlock = true;
         if(currentMove === 'x'){
             e.target.innerHTML = "x";
             e.target.classList.add("red");
@@ -274,34 +276,35 @@ function save(){
     }
 }
 
-function reset(){
+function resetScore(){
     let block = true;
     if(block){
         !block;
+        firstSetBlock = false;
         document.querySelector(".r").innerHTML = "Score reseted!";
         score = [0, 0];
         if(localStorage.getItem("SettingStarting") != null){
             currentMove = localStorage.getItem("SettingStarting");
             if(currentMove === 'x'){
                 currentMoveDisplay.innerHTML = "X";
+                currentMoveDisplay.classList.remove("blue");
+                currentMoveDisplay.classList.add("red");
+
             }
             else if(currentMove === 'o'){
                 currentMoveDisplay.innerHTML = "O";
-            }
-            else {
-                console.log("NIGGER");
+                currentMoveDisplay.classList.remove("red");
+                currentMoveDisplay.classList.add("blue");
             }
         }
         else {
             currentMove = 'x';
             currentMoveDisplay.innerHTML = "X";
+            currentMoveDisplay.classList.remove("blue");
+            currentMoveDisplay.classList.add("red");
         }
-    
-        currentMoveDisplay.classList.remove("blue");
-        currentMoveDisplay.classList.add("red");
         
-        localStorage.clear();
-        settingsSave();
+        localStorage.removeItem("score");
         
         displayScore();
         
@@ -327,7 +330,7 @@ function settingsSave(){
     else if(ORadioButton.checked == true) {
         localStorage.setItem("SettingStarting", 'o');
     }
-    if(localStorage.getItem("score") == null){
+    if(!firstSetBlock){
         currentMove = localStorage.getItem("SettingStarting");
         if(currentMove === 'o'){
             currentMoveDisplay.innerHTML = "O";
