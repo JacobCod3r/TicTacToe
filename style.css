@@ -2,6 +2,13 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+:root {
+    --colorX: red;
+    --colorO: blue;
+    --fastColorX: red;
+    --fastColorO: blue;
+}
+
 body {
     margin: 0;
 }
@@ -66,6 +73,40 @@ body {
     width: 50px;
     background-size: 50px;
     background-position-y: 0px;
+}
+
+.colorChoose {
+    margin-top: 30px;
+}
+
+.colorChoose div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.colorsToDisplayX input, .colorsToDisplayO input {
+    height: 30px;
+    width: 30px;
+    appearance: none;
+    margin-inline: 0;
+    transition: 0.3s;
+}
+
+.colorsToDisplayX input:checked, .colorsToDisplayO input:checked {
+    border: 5px solid white;
+}
+
+.xColorChooseDisplay, .oColorChooseDisplay {
+    font-size: 40px;
+}
+
+.xColorChooseDisplay {
+    color: var(--fastColorX);
+}
+
+.oColorChooseDisplay {
+    color: var(--fastColorO);
 }
 
 .board {
@@ -194,11 +235,11 @@ table tr td {
 }
 
 .red {
-    color: red;
+    color: var(--colorX);
 }
 
 .blue {
-    color: blue;
+    color: var(--colorO);
 }
 
 .move {
@@ -219,12 +260,12 @@ table tr td {
 
 .score .x {
     font-size: 50px;
-    color: red;
+    color: var(--colorX);
 }
 
 .score .o {
     font-size: 50px;
-    color: blue;
+    color: var(--colorO);
 }
 
 .score .scoreDisplay1, .score .scoreDisplay2 {

@@ -11,6 +11,39 @@ var score = [0, 0]
 var inRow = 3;
 var movesDone = 0;
 var checkForWinnerContainer;
+var colors = [
+    'red', 'blue', 'green', 'yellow', 'orange', 'violet', 'cyan', 'black'
+]
+var colorsToDisplayX = document.querySelector(".colorsToDisplayX");
+var colorsToDisplayO = document.querySelector(".colorsToDisplayO");
+var root = document.querySelector(':root');
+
+if(localStorage.getItem("choosedColorX") != null){
+    root.style.setProperty("--colorX", localStorage.getItem("choosedColorX"));
+    root.style.setProperty("--fastColorX", localStorage.getItem("choosedColorX"));
+    root.style.setProperty("--colorO", localStorage.getItem("choosedColorO"));
+    root.style.setProperty("--fastColorO", localStorage.getItem("choosedColorO"));
+}
+else {
+    localStorage.setItem("choosedColorX", "red");
+    localStorage.setItem("choosedColorO", "blue");
+}
+
+for(let i = 0; i < colors.length; i++){
+    if(colors[i] == localStorage.getItem("choosedColorX")){
+        colorsToDisplayX.innerHTML += `<input style="background-color: ${colors[i]}" type="radio" name="colorChooseForX" class="xColorSetting" onclick="fastColorChangeX('${colors[i]}')" checked></input>`;
+    }
+    else {
+        colorsToDisplayX.innerHTML += `<input style="background-color: ${colors[i]}" type="radio" name="colorChooseForX" class="xColorSetting" onclick="fastColorChangeX('${colors[i]}')"></input>`;
+    }
+    if(colors[i] == localStorage.getItem("choosedColorO")){
+        colorsToDisplayO.innerHTML += `<input style="background-color: ${colors[i]}" type="radio" name="colorChooseForO" class="xColorSetting" onclick="fastColorChangeO('${colors[i]}')" checked></input>`;
+    }
+    else {
+        colorsToDisplayO.innerHTML += `<input style="background-color: ${colors[i]}" type="radio" name="colorChooseForO" class="xColorSetting" onclick="fastColorChangeO('${colors[i]}')"></input>`;
+    }
+}
+//<input type="radio" name="colorChooseForX" class="xColorSetting"></input>
 
 var SettingsStarting = 'x';
 var XRadioButton = document.querySelector(".xSettings");
@@ -307,4 +340,16 @@ function settingsSave(){
             currentMoveDisplay.classList.add("red");
         }
     }
+    root.style.setProperty('--colorX', root.style.getPropertyValue('--fastColorX'));
+    root.style.setProperty('--colorO', root.style.getPropertyValue('--fastColorO'));
+    localStorage.setItem("choosedColorX", root.style.getPropertyValue('--fastColorX'));
+    localStorage.setItem("choosedColorO", root.style.getPropertyValue('--fastColorO'));
+}
+
+function fastColorChangeX(color){
+    root.style.setProperty('--fastColorX', color);
+}
+
+function fastColorChangeO(color){
+    root.style.setProperty('--fastColorO', color);
 }
