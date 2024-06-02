@@ -64,6 +64,7 @@ if(localStorage.getItem("SettingStarting") != null){
 if(localStorage.getItem("score") != null){
     score = [localStorage.getItem("score")[0], localStorage.getItem("score")[2]];
     currentMove = localStorage.getItem("currentMove");
+    firstSetBlock = true;
     
     displayScore();
 }
