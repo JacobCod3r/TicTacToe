@@ -117,6 +117,15 @@ body {
     color: var(--fastColorO);
 }
 
+.settingsScreen .container .buttons .e{
+    background-color: rgb(160, 160, 160);
+}
+
+.settingsScreen .container .buttons .c{
+    background-color: rgb(180, 0, 0);
+    margin-bottom: 30px;
+}
+
 .board {
     width: fit-content;
     height: fit-content;
@@ -198,11 +207,6 @@ body {
 
 .endScreen .container .buttons .r{
     background-color: rgb(180, 0, 0);
-    margin-bottom: 30px;
-}
-
-.settingsScreen .container .buttons .e{
-    background-color: rgb(160, 160, 160);
     margin-bottom: 30px;
 }
 

@@ -357,3 +357,8 @@ function fastColorChangeX(color){
 function fastColorChangeO(color){
     root.style.setProperty('--fastColorO', color);
 }
+
+function settingsReset(){
+    localStorage.clear();
+    location.reload();
+}
